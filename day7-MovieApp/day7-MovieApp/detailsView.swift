@@ -1,14 +1,16 @@
 //
-//  secondView.swift
-//  movieApp
+//  detailsView.swift
+//  day7-MovieApp
 //
 //  Created by Shaimaa on 23/03/2022.
 //
 
 import SwiftUI
 
-struct secondView: View {
+struct detailsView: View {
+    
     var movie: MoviesStruct
+
     var body: some View {
         ZStack {
             Color.black.opacity(0.3)
@@ -23,34 +25,34 @@ struct secondView: View {
                 Image(movie.moviesName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200, height: 300)
+                    .frame(height:300)
                     .overlay(Circle().stroke(Color.white, lineWidth: 6))
                     .clipShape(Circle())
+                // if CW-6 then remove the below and use the HStack
                 Text(movie.moviesName)
                     .font(.system(size: 47))
                     .bold()
                     .padding()
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack{
-                        ForEach(movie.movieCast, id: \.self) {  image1 in
+                        ForEach(movie.movieCast, id: \.self) {  moviim in
                             VStack {
-                                Text(image1)
+                                Text(moviim)
                                     .font(.title)
-                                Image(image1)
+                                Image(moviim)
                                     .resizable()
                                     .frame(width: 100, height: 120)
                             }
                         }
                     }
-                }.padding()
             }.padding(.vertical)
                 .foregroundColor(.white)
-        }.navigationBarBackButtonHidden(true)
+        }
     }
 }
-
-struct secondView_Previews: PreviewProvider {
+}
+struct detailsView_Previews: PreviewProvider {
     static var previews: some View {
-        secondView(movie: Encanto)
+        detailsView(movie: ThePit)
     }
 }
